@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Itinerary extends Model
 {
     use HasFactory;
+
+    public function package()
+    {
+        return $this->belongsTo(Itinerary::class);
+    }
 }

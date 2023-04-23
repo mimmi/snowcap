@@ -43,6 +43,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function isAdmin(): boolean
+    {
+        return $this->administrator;
+    }
+
     public function bookings(): HasMany
     {
         return $this->hasMany(Booking::class);
