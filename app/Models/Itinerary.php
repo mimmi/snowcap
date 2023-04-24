@@ -9,6 +9,12 @@ class Itinerary extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'type',
+        'package_id',
+    ];
+
     public function package()
     {
         return $this->belongsTo(Itinerary::class);

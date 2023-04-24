@@ -30,8 +30,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
-        'administrator'
+        'remember_token'
     ];
 
     /**
@@ -41,9 +40,10 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'administrator' => 'boolean',
     ];
 
-    public function isAdmin(): boolean
+    public function isAdmin(): bool
     {
         return $this->administrator;
     }

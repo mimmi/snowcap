@@ -34,21 +34,25 @@ Route::get('/about', [HomeController::class, 'about'])->name('home.about');
 // Administrative Routes
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('dashboard', [AdministratorController::class, 'dashboard'])->name('admin.dashboard');
+    
+    // Users
     Route::get('users', [AdministratorController::class, 'users'])->name('admin.users');
+    Route::post('user/promote', [AdministratorController::class, 'promote'])->name('admin.promote');
+    Route::post('user/demote', [AdministratorController::class, 'demote'])->name('admin.demote');
 
     // Packages
     Route::get('packages', [AdministratorController::class, 'packages'])->name('admin.packages');
     Route::match(['get', 'post'], 'package/create', [AdministratorController::class, 'packageCreate'])->name('admin.package.create');
-    Route::get('package/{id}', [AdministratorController::class, 'packageDetails'])->name('admin.package.details');
-    Route::post('package/{id}', [AdministratorController::class, 'packageUpdate'])->name('admin.package.update');
+    Route::match(['get', 'post'], 'package/{id}', [AdministratorController::class, 'packageDetails'])->name('admin.package.details');
     Route::delete('package/{id}', [AdministratorController::class, 'packageDelete'])->name('admin.package.delete');
-    Route::post('package/{id}/photo', [AdministratorController::class, 'addPhoto'])->name('admin.package.photo.add');
-    Route::delete('package/{id}/photo', [AdministratorController::class, 'removePhoto'])->name('admin.package.photo.remove');
+    Route::get('package/photos/{id}', [AdministratorController::class, 'photos'])->name('admin.package.photos');
+    Route::post('package/photo/add', [AdministratorController::class, 'addPhoto'])->name('admin.package.photo.add');
+    Route::post('package/photo/remove', [AdministratorController::class, 'removePhoto'])->name('admin.package.photo.remove');
 
     // Itineraries
-    Route::match(['get', 'post'], 'package/{packageId}/itinerary/create', [AdministratorController::class, 'itineraryCreate'])->name('admin.package.itinerary.create');
-    Route::post('package/{packageId}/itinerary/{itineraryId}', [AdministratorController::class, 'itineraryUpdate'])->name('admin.package.itinerary.update');
-    Route::delete('package/{packageId}/itinerary/{itineraryId}',[AdministratorController::class, 'itineraryDelete'] )->name('admin.package.itinerary.delete');
+    Route::get('package/itinerary/{id}', [AdministratorController::class, 'itinerary'])->name('admin.package.itinerary');
+    Route::post('package/itinerary/add', [AdministratorController::class, 'addItineraryItem'])->name('admin.package.itinerary.add');
+    Route::post('package/itinerary/remove', [AdministratorController::class, 'removeItineraryItem'])->name('admin.package.itinerary.remove');
 
     // Bookings
     Route::get('bookings', [AdministratorController::class, 'bookings'])->name('admin.bookings');
