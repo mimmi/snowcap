@@ -19,6 +19,6 @@ class EnsureUserIsAdmin
         if (Auth::user()->isAdmin()) {
             return $next($request);
         }
-        return route('login');
+        return abort(403, 'Access Denied');
     }
 }
