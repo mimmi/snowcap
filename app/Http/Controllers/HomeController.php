@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     public function packages(Request $request) {
         return Inertia::render('Packages', [
-            'packages' => Package::with('itinerary')->get()
+            'packages' => Package::with(['itinerary', 'photos'])->get()
         ]);
     }
 }

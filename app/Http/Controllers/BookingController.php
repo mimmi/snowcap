@@ -7,6 +7,8 @@ use App\Models\Booking;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Auth;
+use Event;
+use App\Events\BookingConfirmationEvent;
 
 class BookingController extends Controller
 {
@@ -34,6 +36,7 @@ class BookingController extends Controller
             'user_id' => Auth::user()->id
         ]));
 
+        Event::dispatch(new BookingConfirmationEvent($booking->id));
         return redirect()->route('booking.confirmation', ['id' => $booking->id]);
     }
 

@@ -59,8 +59,7 @@ const search = ref('');
 
 const filteredpackages = computed(() => {
   return props.packages.filter(thisPackage =>
-    thisPackage.name.toLowerCase().includes(search.value.toLowerCase()) ||
-    thisPackage.email.toLowerCase().includes(search.value.toLowerCase())
+    thisPackage.name.toLowerCase().includes(search.value.toLowerCase())
   );
 });
 

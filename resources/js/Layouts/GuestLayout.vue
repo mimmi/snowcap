@@ -39,10 +39,11 @@
 			<div class="mt-6 flow-root">
 			  <div class="-my-6 divide-y divide-gray-500/10">
 				<div class="space-y-2 py-6">
-				  <a v-for="item in navigation" :key="item.name" :href="item.href" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ item.name }}</a>
+				  <Link v-for="item in navigation" :key="item.name" :href="item.href" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ item.name }}</Link>
 				</div>
 				<div class="py-6">
-				  <Link :href="route('login')" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</Link>
+					<Link v-if="$page.props.auth.user" :href="route('logout')" method="post" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log out <span aria-hidden="true">&rarr;</span></Link>
+					<Link v-else :href="route('login')" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in <span aria-hidden="true">&rarr;</span></Link>
 				</div>
 			  </div>
 			</div>
@@ -72,6 +73,7 @@
 	{ name: 'Home', href: route('dashboard') },
 	{ name: 'Packages', href: route('home.packages') },
 	{ name: 'About Us', href: 'https://hummingbird.travel' },
+	{ name: 'Admin Portal', href: route('admin.dashboard') },
   ]
   const mobileMenuOpen = ref(false)
   </script>
