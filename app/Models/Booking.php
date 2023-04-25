@@ -10,6 +10,12 @@ class Booking extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'start_date',
+        'user_id',
+        'package_id',
+    ];
+
     public function getStartDateAttribute()
     {
         $startDate = $this->attributes['start_date'];

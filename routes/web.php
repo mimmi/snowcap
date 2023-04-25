@@ -17,19 +17,9 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
 
 // Unauthenticated Guest Routes
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
-Route::get('/packages', [HomeController::class, 'packages'])->name('home.packages');
-Route::get('/about', [HomeController::class, 'about'])->name('home.about');
 
 // Administrative Routes
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
@@ -62,12 +52,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
 // Regular User Routes
 Route::middleware('auth')->group(function () {
-    // Packages
-    //Route::get('packages', [BookingController::class, 'index'])->name('package.details');
-    Route::post('package/{id}', [BookingController::class, 'book'])->name('package.book');
-
     // Bookings
-    Route::get('booking/{id}/{new}', [BookingController::class, 'details'])->name('booking.details');
+    Route::get('/packages', [HomeController::class, 'packages'])->name('home.packages');
+    Route::get('/booking/{id}', [BookingController::class, 'index'])->name('booking.intention');
+    Route::post('/booking/create', [BookingController::class, 'create'])->name('booking.create');
+    Route::get('/booking/confirmation/{id}', [BookingController::class, 'confirmation'])->name('booking.confirmation');
 });
 
 require __DIR__.'/auth.php';

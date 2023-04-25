@@ -10,20 +10,12 @@ use Route;
 class HomeController extends Controller
 {
     public function index(Request $request) {
-        return Inertia::render('Home', [
-            'packages' => Package::with('itinerary')->get()
-        ]);
+        return Inertia::render('Home');
     }
 
     public function packages(Request $request) {
         return Inertia::render('Packages', [
             'packages' => Package::with('itinerary')->get()
-        ]);
-    }
-
-    public function about(Request $request) {
-        return Inertia::render('About', [
-            
         ]);
     }
 }

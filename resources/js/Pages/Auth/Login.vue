@@ -33,6 +33,8 @@ const submit = () => {
     <GuestLayout>
         <Head title="Log in" />
 
+        <h2 class="py-10 font-bold">Please login to continue</h2>
+
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
         </div>
@@ -85,9 +87,18 @@ const submit = () => {
                     Forgot your password?
                 </Link>
 
+                <Link
+                    :href="route('register')"
+                    class="ml-2 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
+                >
+                    Register
+                </Link>
+
                 <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in
                 </PrimaryButton>
+
+
             </div>
         </form>
     </GuestLayout>
