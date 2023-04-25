@@ -12,7 +12,7 @@
         </div>
         <div class="py-12">
             <form @submit.prevent="form.post(route('admin.package.details', {id: form.id}))" method="post" class="mx-auto bg-white p-8 rounded-lg shadow-md">
-                <input type="hidden" name="_token" :value="this.$page.props.csrf_token" />
+                <input type="hidden" name="_token" :value="$page.props.csrf_token" />
 
                 <div class="mb-6">
                     <label for="id" class="block font-medium text-gray-700">ID</label>
